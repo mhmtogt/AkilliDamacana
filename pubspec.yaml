@@ -10,7 +10,6 @@ environment:
 
 
 dependencies:
-  change_notifier: ^0.24.0
   auto_route: ^6.1.0
   shrink_sidemenu: ^2.0.0+2-null-safety
   flutter:

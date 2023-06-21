@@ -1,13 +1,21 @@
 import 'package:akilli_damacana_mini_project/presentation/common_widget/dismissible_body.dart';
+import 'package:akilli_damacana_mini_project/providers/counter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akilli_damacana_mini_project/core/app_router/app_router.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(ChangeNotifierProvider<ChangeNotifier>(
-      create: (context) => ChangeNotifier(),
-      child: 
-  MainApp()));
+void main() {
+  return runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductProvider>(
+            create: (_) => ProductProvider()),
+      ],
+      child: MainApp(),
+    ),
+  );
+}
 
 class MainApp extends StatelessWidget {
   MainApp({super.key});

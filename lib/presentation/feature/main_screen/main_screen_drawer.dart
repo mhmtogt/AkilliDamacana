@@ -1,4 +1,5 @@
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
+import 'package:akilli_damacana_mini_project/model/product.dart';
 import 'package:akilli_damacana_mini_project/presentation/common_widget/card_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -115,9 +116,8 @@ class MainScreenDrawer extends StatelessWidget {
                 )),
           ),
         ),
-         Padding(
-          
-          padding:   const EdgeInsets.fromLTRB(30.0,0.0,0.0,0.0),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
           child: Column(
             children: [
               Row(
@@ -125,27 +125,32 @@ class MainScreenDrawer extends StatelessWidget {
                   SizedBox(
                     height: 100.w,
                     width: 88.w,
-                    child: const CardWidget(
-                      image: AssetImage(
+                    child: CardWidget(
+                      image: const AssetImage(
                         'assets/images/im_hayat.png',
                       ),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
-                    
                   ),
                   SizedBox(
                     height: 88.h,
                     width: 88.w,
-                    child: const CardWidget(
-                      image: AssetImage('assets/images/im_pinar.png'),
+                    child: CardWidget(
+                      image: const AssetImage('assets/images/im_pinar.png'),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
                   ),
                   SizedBox(
                     width: 88.w,
                     height: 88.h,
-                    child: const CardWidget(
-                      image: AssetImage(
+                    child: CardWidget(
+                      image: const AssetImage(
                         'assets/images/im_damla.png',
                       ),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
                   ),
                 ],
@@ -155,23 +160,28 @@ class MainScreenDrawer extends StatelessWidget {
                   SizedBox(
                     height: 88.h,
                     width: 88.w,
-                    child: const CardWidget(
-                      
-                      image: AssetImage('assets/images/im_hamidiye.png'),
+                    child: CardWidget(
+                      image: const AssetImage('assets/images/im_hamidiye.png'),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
                   ),
                   SizedBox(
                     width: 88.w,
                     height: 88.h,
-                    child: const CardWidget(
-                      image: AssetImage('assets/images/im_saka.png'),
+                    child: CardWidget(
+                      image: const AssetImage('assets/images/im_saka.png'),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
                   ),
                   SizedBox(
                     width: 88.w,
                     height: 88.h,
-                    child: const CardWidget(
-                      image: AssetImage('assets/images/im_sirma.png'),
+                    child: CardWidget(
+                      image: const AssetImage('assets/images/im_sirma.png'),
+                      product:
+                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
                     ),
                   ),
                 ],
@@ -179,8 +189,6 @@ class MainScreenDrawer extends StatelessWidget {
             ],
           ),
         ),
-
-
       ]),
     ));
   }

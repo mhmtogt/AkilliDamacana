@@ -1,9 +1,11 @@
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
 import 'package:akilli_damacana_mini_project/presentation/common_widget/fiyat_ve_adet.dart';
+import 'package:akilli_damacana_mini_project/providers/counter_provider.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class CartScreen extends StatelessWidget {
@@ -11,7 +13,6 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: AppColors.blue,
       body: Padding(
@@ -38,6 +39,7 @@ class CartScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Text('${context.watch<ProductProvider>().product?.name}'),
                       SizedBox(
                         width: 130.w,
                       ),
@@ -72,7 +74,6 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                
                 const fiiyat_ve_adet1()
               ],
             ),
@@ -105,11 +106,8 @@ class CartScreen extends StatelessWidget {
                 const fiiyat_ve_adet2()
               ],
             ),
-          
           ],
-          
         ),
-        
       ),
     );
   }
