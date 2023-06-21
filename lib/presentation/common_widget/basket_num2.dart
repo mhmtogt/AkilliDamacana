@@ -15,7 +15,7 @@ class Piece2 extends StatefulWidget {
 
 class _PieceState extends State<Piece2> {
   int _quantity2 = 0; //sepetteki urunler
-   double _price2 = 17.90;
+    double _price2 = 17.90;
 
   void _inc2() {
     setState(() {
