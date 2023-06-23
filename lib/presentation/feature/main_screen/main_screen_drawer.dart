@@ -1,5 +1,5 @@
+import 'package:akilli_damacana_mini_project/core/constants/product_list.dart';
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
-import 'package:akilli_damacana_mini_project/model/product.dart';
 import 'package:akilli_damacana_mini_project/presentation/common_widget/card_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -116,79 +116,21 @@ class MainScreenDrawer extends StatelessWidget {
                 )),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    height: 100.w,
-                    width: 88.w,
-                    child: CardWidget(
-                      image: const AssetImage(
-                        'assets/images/im_hayat.png',
-                      ),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 88.h,
-                    width: 88.w,
-                    child: CardWidget(
-                      image: const AssetImage('assets/images/im_pinar.png'),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 88.w,
-                    height: 88.h,
-                    child: CardWidget(
-                      image: const AssetImage(
-                        'assets/images/im_damla.png',
-                      ),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 88.h,
-                    width: 88.w,
-                    child: CardWidget(
-                      image: const AssetImage('assets/images/im_hamidiye.png'),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 88.w,
-                    height: 88.h,
-                    child: CardWidget(
-                      image: const AssetImage('assets/images/im_saka.png'),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 88.w,
-                    height: 88.h,
-                    child: CardWidget(
-                      image: const AssetImage('assets/images/im_sirma.png'),
-                      product:
-                          Product('Hayat Su', 'assets/images/im_hayat.png', 0),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+        Expanded(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              return CardWidget(
+                product: ProductList.products[index],
+              );
+            },
           ),
-        ),
+        )
       ]),
     ));
   }

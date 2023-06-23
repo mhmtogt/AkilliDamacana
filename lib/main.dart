@@ -1,5 +1,5 @@
 import 'package:akilli_damacana_mini_project/presentation/common_widget/dismissible_body.dart';
-import 'package:akilli_damacana_mini_project/providers/counter_provider.dart';
+import 'package:akilli_damacana_mini_project/providers/basket_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akilli_damacana_mini_project/core/app_router/app_router.dart';
@@ -9,8 +9,7 @@ void main() {
   return runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<ProductProvider>(
-            create: (_) => ProductProvider()),
+        ChangeNotifierProvider<BasketProvider>(create: (_) => BasketProvider()),
       ],
       child: MainApp(),
     ),

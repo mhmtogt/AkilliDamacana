@@ -1,7 +1,13 @@
 class Product {
+  final int id;
   final String name;
   final String image;
-  final int count;
+  final int price;
 
-  Product(this.name, this.image, this.count);
+  Product(
+    this.id,
+    this.name,
+    this.image,
+    this.price,
+  );
 }

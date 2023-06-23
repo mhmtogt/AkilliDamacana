@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DismissibleBody extends StatelessWidget {
-  const DismissibleBody({super.key, required this.child,
-  }
-  );
+  const DismissibleBody({
+    super.key,
+    required this.child,
+  });
 
   final Widget child;
 
@@ -14,8 +15,7 @@ class DismissibleBody extends StatelessWidget {
       onTap: () {
         final currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.focusedChild?.unfocus();
-
+          currentFocus.focusedChild?.unfocus();
         }
       },
       child: child,

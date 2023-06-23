@@ -1,10 +1,9 @@
-import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/home_screen.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket/shop_basket.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/home/home_screen.dart';
 import 'package:akilli_damacana_mini_project/presentation/feature/main_screen/main_screen.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/settings_screen.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/splash_screen.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/login_screen.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/dummy_screen.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/settings/settings_screen.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/splash/splash_screen.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/login/login_screen.dart';
 import 'package:auto_route/auto_route.dart';
 
 part "app_router.gr.dart";
