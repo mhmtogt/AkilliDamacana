@@ -3,6 +3,8 @@ import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
 import 'package:akilli_damacana_mini_project/core/theme/text_styles.dart';
 import 'package:akilli_damacana_mini_project/model/basket_item.dart';
 import 'package:akilli_damacana_mini_project/providers/basket_provider.dart';
+import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket/order_screen.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,12 +20,18 @@ class CartScreen extends StatelessWidget {
       showDialog(
           context: context,
           builder: (_) => AlertDialog(
-                title: const Text('sepet boş'),
-                content: const Text('sepetinize ürün ekleyin'),
+                backgroundColor: AppColors.blue,
+                title: const Text(
+                  'sepet boş',
+                  style: TextStyle(color: Colors.white),
+                ),
+                content: const Text('sepetinize ürün ekleyin',
+                    style: TextStyle(color: Colors.white)),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('tamam'),
+                    child: const Text('tamam',
+                        style: TextStyle(color: Colors.white)),
                   )
                 ],
               ));
@@ -146,7 +154,7 @@ class CartScreen extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          context.router.replace(const OrderRoute());
+                          context.router.push(const OrderRoute());
                         },
                         child: Text(
                           'SİPARİŞİ ONAYLA ',

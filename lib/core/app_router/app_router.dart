@@ -20,10 +20,9 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       page: LoginRoute.page,
     ),
+    
+   
     AutoRoute(page: MainRoute.page, path: '/main', children: [
-      AutoRoute(
-       
-        page: OrderRoute.page),
       AutoRoute(
         initial: true,
         page: HomeRoute.page,
@@ -34,7 +33,10 @@ class AppRouter extends _$AppRouter {
       AutoRoute(
         page: SettingsRoute.page,
       ),
-     
+       AutoRoute(
+    page: OrderRoute.page,
+  ),
     ]),
   ];
 }
+
