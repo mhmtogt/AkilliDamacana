@@ -1,3 +1,4 @@
+import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket/order_screen.dart';
 import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket/shop_basket.dart';
 import 'package:akilli_damacana_mini_project/presentation/feature/home/home_screen.dart';
 import 'package:akilli_damacana_mini_project/presentation/feature/main_screen/main_screen.dart';
@@ -21,6 +22,9 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(page: MainRoute.page, path: '/main', children: [
       AutoRoute(
+       
+        page: OrderRoute.page),
+      AutoRoute(
         initial: true,
         page: HomeRoute.page,
       ),
@@ -29,7 +33,8 @@ class AppRouter extends _$AppRouter {
       ),
       AutoRoute(
         page: SettingsRoute.page,
-      )
+      ),
+     
     ]),
   ];
 }

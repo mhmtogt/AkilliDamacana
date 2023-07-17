@@ -1,4 +1,6 @@
+import 'package:akilli_damacana_mini_project/core/app_router/app_router.dart';
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
+import 'package:akilli_damacana_mini_project/core/theme/text_styles.dart';
 import 'package:akilli_damacana_mini_project/model/basket_item.dart';
 import 'package:akilli_damacana_mini_project/providers/basket_provider.dart';
 import 'package:auto_route/auto_route.dart';
@@ -11,9 +13,32 @@ import 'package:provider/provider.dart';
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
+  void showEmptyCardtPopup(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                title: const Text('sepet boş'),
+                content: const Text('sepetinize ürün ekleyin'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('tamam'),
+                  )
+                ],
+              ));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final basket = context.watch<BasketProvider>().basket;
+    double totalPrice = context.watch<BasketProvider>().calculateTotalPrice();
+
+    if (basket.products.isEmpty) {
+      showEmptyCardtPopup(context);
+    }
+
     return Scaffold(
       backgroundColor: AppColors.blue,
       body: Column(
@@ -74,32 +99,69 @@ class CartScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(
-              width: 414.w,
-              height: 50.h,
-              child: Card(
-                color: AppColors.blue,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'TOPLAM  TL',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 414.w,
+                height: 50.h,
+                child: Card(
+                  color: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            'TOPLAM TUTAR: ${totalPrice.toStringAsFixed(2.bitLength)} TL',
+                            style: TextStyle(
+                              color: AppColors.blue,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 130.w,
-                    ),
-                    SvgPicture.asset(
-                      'assets/icons/ic_w_shop.svg',
-                    )
-                  ],
+                      SizedBox(
+                        width: 130.w,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 414.w,
+                height: 50.h,
+                child: Card(
+                  color: AppColors.koyuMavi,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.router.replace(const OrderRoute());
+                        },
+                        child: Text(
+                          'SİPARİŞİ ONAYLA ',
+                          style: TextStyle(
+                            color: AppColors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 130.w,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -149,11 +211,17 @@ class BasketProductCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('19Lt ${basketItem.product.name} Damacana Su'),
+              Text(
+                '19Lt ${basketItem.product.name} Damacana Su',
+                style: TextStyles.robotoRegular16,
+              ),
               SizedBox(
                 height: 9.h,
               ),
-              Text('${basketItem.product.price} TL'),
+              Text(
+                '${basketItem.product.price} TL',
+                style: TextStyles.robotoRegular16,
+              ),
               const Spacer(),
               SizedBox(
                 width: 172.w,
@@ -170,24 +238,37 @@ class BasketProductCard extends StatelessWidget {
                                 left: Radius.circular(10.r),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              context
+                                  .read<BasketProvider>()
+                                  .decreaseQuantity(basketItem);
+                            },
                             child: Text(
                               '-',
-                              style: TextStyle(color: AppColors.blue),
+                              style: TextStyle(
+                                  color: AppColors.blue, fontSize: 34),
                             ))),
                     Expanded(
                         flex: 3,
                         child: Container(
                             height: double.infinity,
                             color: AppColors.koyuMavi,
-                            child:
-                                Center(child: Text('${basketItem.quantity}')))),
+                            child: Center(
+                                child: Text(
+                              '${basketItem.quantity}',
+                              style: TextStyle(
+                                  color: AppColors.white, fontSize: 20),
+                            )))),
                     Expanded(
                         flex: 1,
                         child: FloatingActionButton(
                           backgroundColor: AppColors.white,
                           elevation: 0,
-                          onPressed: () {},
+                          onPressed: () {
+                            context
+                                .read<BasketProvider>()
+                                .increaseQuantity(basketItem);
+                          },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.horizontal(
                               right: Radius.circular(10.r),
@@ -195,7 +276,8 @@ class BasketProductCard extends StatelessWidget {
                           ),
                           child: Text(
                             '+',
-                            style: TextStyle(color: AppColors.blue),
+                            style:
+                                TextStyle(color: AppColors.blue, fontSize: 24),
                           ),
                         )),
                   ],
@@ -206,43 +288,5 @@ class BasketProductCard extends StatelessWidget {
         ],
       ),
     );
-    // return Card(
-    //   child: ListTile(
-    //     leading: Image.asset(
-    //       basketItem.product.image,
-    //       width: 50.w,
-    //       height: 50.h,
-    //     ),
-    //     title: Text(
-    //       basketItem.product.name,
-    //       style: TextStyle(
-    //         color: Colors.black,
-    //         fontSize: 20.sp,
-    //         fontWeight: FontWeight.bold,
-    //       ),
-    //     ),
-    //     subtitle: Text(
-    //       '${basketItem.product.price} TL',
-    //       style: TextStyle(
-    //         color: Colors.black,
-    //         fontSize: 20.sp,
-    //         fontWeight: FontWeight.bold,
-    //       ),
-    //     ),
-    //     trailing: Row(
-    //       mainAxisSize: MainAxisSize.min,
-    //       children: [
-    //         Text(
-    //           '${basketItem.quantity} adet',
-    //           style: TextStyle(
-    //             color: Colors.black,
-    //             fontSize: 20.sp,
-    //             fontWeight: FontWeight.bold,
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

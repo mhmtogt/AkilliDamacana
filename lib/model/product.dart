@@ -2,7 +2,7 @@ class Product {
   final int id;
   final String name;
   final String image;
-  final int price;
+  final double price;
 
   Product(
     this.id,

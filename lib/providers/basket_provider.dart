@@ -22,10 +22,22 @@ class BasketProvider with ChangeNotifier {
   }
 
   void increaseQuantity(BasketItem basketItem) {
-    //
+    basketItem.quantity++; // Miktarı artır
+    notifyListeners();
   }
 
   void decreaseQuantity(BasketItem basketItem) {
-    //
+    if (basketItem.quantity > 0) {
+      basketItem.quantity--; // Miktarı azalt
+      notifyListeners();
+    }
+  }
+
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (final basketItem in _basket.products) {
+      totalPrice += basketItem.product.price * basketItem.quantity;
+    }
+    return totalPrice;
   }
 }
