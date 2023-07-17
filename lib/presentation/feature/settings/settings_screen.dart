@@ -1,9 +1,12 @@
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
 import 'package:akilli_damacana_mini_project/core/theme/text_styles.dart';
+import 'package:akilli_damacana_mini_project/providers/liter_provider.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class SettingsScreen extends StatelessWidget {
@@ -79,6 +82,19 @@ class SettingsScreen extends StatelessWidget {
                     side: const BorderSide(color: Colors.white, width: 1),
                   ),
                   child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    onChanged: (newValue) {
+                      if (newValue.isNotEmpty) {
+                        context
+                            .read<LiterProvider>()
+                            .updateBoy(int.parse(newValue));
+                      } else {
+                        context.read<LiterProvider>().updateBoy(0);
+                      }
+                    },
                     decoration: InputDecoration(
                       labelText: 'Boy',
                       labelStyle: TextStyles.robotoRegular16,
@@ -159,7 +175,6 @@ class SettingsScreen extends StatelessWidget {
                             fit: BoxFit.none,
                             child: SvgPicture.asset(
                               'assets/icons/ic_person.svg',
-                         
                             ),
                           )),
                     ),
@@ -176,7 +191,8 @@ class SettingsScreen extends StatelessWidget {
                       decoration: InputDecoration(
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 30.h, minWidth: 30.w),
-                          labelText: '   4.5 LT',
+                          labelText:
+                              '   ${context.watch<LiterProvider>().liter} LT',
                           labelStyle: TextStyles.robotoRegular16,
                           suffixIcon: SvgPicture.asset(
                             'assets/icons/ic_bardak.svg',

@@ -20,23 +20,35 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       page: LoginRoute.page,
     ),
-    
-   
     AutoRoute(page: MainRoute.page, path: '/main', children: [
       AutoRoute(
         initial: true,
         page: HomeRoute.page,
       ),
       AutoRoute(
-        page: CartRoute.page,
+        maintainState: false,
+        path: 'cart-tab',
+        page: CartTabRoute.page,
+        children: [
+          AutoRoute(
+            path: 'cart',
+            initial: true,
+            page: CartRoute.page,
+          ),
+          AutoRoute(
+            path: 'order',
+            page: OrderRoute.page,
+          ),
+        ],
       ),
       AutoRoute(
         page: SettingsRoute.page,
       ),
-       AutoRoute(
-    page: OrderRoute.page,
-  ),
     ]),
   ];
 }
 
+@RoutePage()
+class CartTabScreen extends AutoRouter {
+  const CartTabScreen({super.key});
+}

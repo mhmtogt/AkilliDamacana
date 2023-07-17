@@ -1,5 +1,6 @@
 import 'package:akilli_damacana_mini_project/presentation/common_widget/dismissible_body.dart';
 import 'package:akilli_damacana_mini_project/providers/basket_provider.dart';
+import 'package:akilli_damacana_mini_project/providers/liter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:akilli_damacana_mini_project/core/app_router/app_router.dart';
@@ -10,6 +11,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<BasketProvider>(create: (_) => BasketProvider()),
+        ChangeNotifierProvider<LiterProvider>(create: (_) => LiterProvider()),
       ],
       child: MainApp(),
     ),
@@ -28,6 +30,7 @@ class MainApp extends StatelessWidget {
       builder: (context, child) {
         return DismissibleBody(
           child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             routerConfig: _appRouter.config(),
           ),
         );

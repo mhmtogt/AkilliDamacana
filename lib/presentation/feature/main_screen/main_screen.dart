@@ -41,10 +41,9 @@ class _MainScreenState extends State<MainScreen> {
         );
       },
       routes: const [
-        CartRoute(),
+        CartTabRoute(),
         HomeRoute(),
         SettingsRoute(),
-      
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return SizedBox(

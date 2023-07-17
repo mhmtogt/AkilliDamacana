@@ -3,7 +3,6 @@ import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
 import 'package:akilli_damacana_mini_project/core/theme/text_styles.dart';
 import 'package:akilli_damacana_mini_project/model/basket_item.dart';
 import 'package:akilli_damacana_mini_project/providers/basket_provider.dart';
-import 'package:akilli_damacana_mini_project/presentation/feature/shop_basket/order_screen.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class CartScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white)),
                 actions: [
                   TextButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => context.router.pop(),
                     child: const Text('tamam',
                         style: TextStyle(color: Colors.white)),
                   )
@@ -111,7 +110,6 @@ class CartScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 width: 414.w,
-                height: 50.h,
                 child: Card(
                   color: AppColors.white,
                   shape: RoundedRectangleBorder(
@@ -119,21 +117,16 @@ class CartScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            'TOPLAM TUTAR: ${totalPrice.toStringAsFixed(2.bitLength)} TL',
-                            style: TextStyle(
-                              color: AppColors.blue,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'TOPLAM TUTAR: ${totalPrice.toStringAsFixed(2.bitLength)} TL',
+                          style: TextStyle(
+                            color: AppColors.blue,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 130.w,
                       ),
                     ],
                   ),
@@ -144,31 +137,22 @@ class CartScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
                 width: 414.w,
-                height: 50.h,
                 child: Card(
                   color: AppColors.koyuMavi,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          context.router.push(const OrderRoute());
-                        },
-                        child: Text(
-                          'SİPARİŞİ ONAYLA ',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                  child: TextButton(
+                    onPressed: () {
+                      context.router.push(const OrderRoute());
+                    },
+                    child: Text(
+                      'SİPARİŞİ ONAYLA ',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(
-                        width: 130.w,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),

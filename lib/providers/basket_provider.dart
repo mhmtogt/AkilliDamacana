@@ -27,8 +27,11 @@ class BasketProvider with ChangeNotifier {
   }
 
   void decreaseQuantity(BasketItem basketItem) {
-    if (basketItem.quantity > 0) {
+    if (basketItem.quantity > 1) {
       basketItem.quantity--; // Miktarı azalt
+      notifyListeners();
+    } else {
+      _basket.products.remove(basketItem);
       notifyListeners();
     }
   }
