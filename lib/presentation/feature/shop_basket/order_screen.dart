@@ -1,4 +1,3 @@
-import 'package:akilli_damacana_mini_project/core/app_router/app_router.dart';
 import 'package:akilli_damacana_mini_project/core/theme/app_colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +69,7 @@ class OrderScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 color: AppColors.koyuMavi,
                 child: TextButton(
-                  onPressed: () {
-                    context.router.push(const SettingsRoute());
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Profile Git',
                     style: TextStyle(
